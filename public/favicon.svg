@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Fond circulaire -->
+  <circle cx="32" cy="32" r="32" fill="#2d3a2e"/>
+
+  <!-- Bulle principale -->
+  <circle cx="30" cy="34" r="18" fill="none" stroke="#c0a882" stroke-width="3" opacity="0.95"/>
+  <!-- Reflet bulle principale -->
+  <circle cx="23" cy="26" r="4" fill="white" opacity="0.3"/>
+
+  <!-- Petite bulle haute droite -->
+  <circle cx="46" cy="18" r="9" fill="none" stroke="#5a8a5a" stroke-width="2.5"/>
+  <circle cx="43" cy="15" r="2" fill="white" opacity="0.3"/>
+
+  <!-- Toute petite bulle -->
+  <circle cx="17" cy="17" r="5" fill="none" stroke="#c0a882" stroke-width="2" opacity="0.75"/>
+  <circle cx="15" cy="15" r="1.2" fill="white" opacity="0.3"/>
+</svg>
