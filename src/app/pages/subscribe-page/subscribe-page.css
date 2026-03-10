@@ -1,0 +1,81 @@
+.subscribe-page {
+  min-height: 60vh;
+}
+
+.subscribe-card {
+  width: 100%;
+  max-width: 520px;
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+
+  .card-header {
+    background: var(--dark-charter);
+    color: white;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 3px solid var(--green-charter);
+
+    h4 {
+      font-size: 1.2rem;
+    }
+  }
+
+  .card-body {
+    background: white;
+  }
+
+  .card-footer {
+    background: #f8f6f2;
+    border-top: 1px solid #e0ddd8;
+    color: #555;
+  }
+
+  .input-group-text {
+    background: var(--dark-charter);
+    color: var(--green-charter);
+    border-color: #ced4da;
+  }
+
+  .form-control:focus {
+    border-color: var(--green-charter);
+    box-shadow: 0 0 0 0.2rem rgba(90, 138, 90, 0.2);
+  }
+
+  .form-check-input:checked {
+    background-color: var(--green-charter);
+    border-color: var(--green-charter);
+  }
+
+  .btn-register {
+    background: var(--green-charter);
+    border-color: var(--green-charter);
+    color: white;
+    font-weight: 600;
+    padding: 0.6rem;
+    border-radius: 8px;
+    transition: background 0.2s ease;
+
+    &:hover {
+      background: var(--dark-charter);
+      border-color: var(--dark-charter);
+    }
+  }
+
+  .terms-link {
+    color: var(--purple-charter);
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .login-link {
+    color: var(--green-charter);
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

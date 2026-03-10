@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 80" width="300" height="80">
+  <!-- Bulles de savon -->
+  <circle cx="38" cy="42" r="28" fill="none" stroke="#c0a882" stroke-width="3" opacity="0.9"/>
+  <circle cx="38" cy="42" r="18" fill="none" stroke="#c0a882" stroke-width="1.5" opacity="0.4"/>
+  <circle cx="28" cy="30" r="4" fill="white" opacity="0.35"/>
+
+  <circle cx="60" cy="20" r="14" fill="none" stroke="#5a8a5a" stroke-width="2.5"/>
+  <circle cx="54" cy="14" r="3" fill="white" opacity="0.35"/>
+
+  <circle cx="18" cy="16" r="8" fill="none" stroke="#c0a882" stroke-width="2" opacity="0.7"/>
+  <circle cx="15" cy="12" r="2" fill="white" opacity="0.3"/>
+
+  <!-- Texte principal -->
+  <text x="88" y="46" font-family="'Segoe UI', Roboto, sans-serif" font-size="32" font-weight="800" fill="#c0a882">Sav</text>
+  <text x="152" y="46" font-family="'Segoe UI', Roboto, sans-serif" font-size="32" font-weight="800" fill="#5a8a5a">App</text>
+
+  <!-- Sous-titre -->
+  <text x="89" y="62" font-family="'Segoe UI', Roboto, sans-serif" font-size="11" fill="#c0a882" letter-spacing="3.5" opacity="0.85">SAVON À FROID</text>
+</svg>

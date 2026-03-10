@@ -1,1 +1,21 @@
-/* You can add global styles to this file, and also import other style files */
+/* ============================================================
+   CHARTE GRAPHIQUE - Variables CSS globales
+   ============================================================ */
+:root {
+  --top-bar-height: 80px;
+  --navbar-height: 50px;
+  --header-height: calc(var(--top-bar-height) + var(--navbar-height));
+  --green-charter: #5a8a5a;       /* Vert sauge/herbe naturelle */
+  --purple-charter: #7c5cbf;      /* Violet lavande */
+  --brown-charter: #c0a882;       /* Brun sable chaud (fond top-bar) */
+  --dark-charter: #2d3a2e;        /* Vert forêt sombre (navbar, footer) */
+  --dark-side-charter: #1a221a;   /* Quasi-noir pour les gouttières */
+}
+
+/* ============================================================
+   GLOBAL
+   ============================================================ */
+body {
+  background-color: #f0ebe5;      /* Blanc cassé chaud */
+  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}

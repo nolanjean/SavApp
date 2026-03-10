@@ -22,7 +22,7 @@
                         @if (ingredientSelectionne?.id === item.id) {
                         <td>{{ item.id }}</td>
                         <td>
-                            <input [(ngModel)]="ingredientSelectionne!.nom" class="formcontrol form-control-sm" />
+                            <input [(ngModel)]="ingredientSelectionne!.nom" class="form-control form-control-sm" />
                         </td>
                         <td>
                             <input type="number" [(ngModel)]="ingredientSelectionne!.sapo"
@@ -53,10 +53,10 @@
                         <td>{{ item.ins }}</td>
                         <td>{{ item.iode }}</td>
                         <td class="text-center">
-                            <button (click)="editerIngredient(item)" class="btn btn-sm btnwarning me-2">
+                            <button (click)="editerIngredient(item)" class="btn btn-sm btn-warning me-2">
                                 <i class="bi bi-pencil-fill"></i>
                             </button>
-                            <button (click)="deleteIngredient(item.id)" class="btn btn-sm btndanger">
+                            <button (click)="deleteIngredient(item.id)" class="btn btn-sm btn-danger">
                                 <i class="bi bi-trash-fill"></i>
                             </button>
                         </td>
@@ -92,8 +92,8 @@
                                 class="form-control form-control-sm" />
                         </td>
                         <td class="text-center">
-                            <button (click)="saveIngredient()" class="btn btn-sm btn-success me1">Créer</button>
-                            <button (click)="ingredientSelectionne = null" class="btn btn-sm btnsecondary">
+                            <button (click)="saveIngredient()" class="btn btn-sm btn-success me-1">Créer</button>
+                            <button (click)="ingredientSelectionne = null" class="btn btn-sm btn-secondary">
                                 Annuler
                             </button>
                         </td>

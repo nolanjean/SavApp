@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 230 65" width="230" height="65">
+  <!-- Barre décorative gauche -->
+  <rect x="0" y="0" width="5" height="65" rx="2.5" fill="#5a8a5a"/>
+
+  <!-- Texte principal -->
+  <text x="18" y="24" font-family="'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="800" fill="#2d3a2e" letter-spacing="0.5">Lycée Léonard</text>
+  <text x="18" y="44" font-family="'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="800" fill="#5a8a5a" letter-spacing="0.5">de Vinci</text>
+
+  <!-- Ligne -->
+  <line x1="18" y1="50" x2="228" y2="50" stroke="#5a8a5a" stroke-width="1"/>
+
+  <!-- Ville -->
+  <text x="18" y="61" font-family="'Segoe UI', Roboto, sans-serif" font-size="9" fill="#7c5cbf" letter-spacing="3">MELUN · BTS SIO</text>
+</svg>

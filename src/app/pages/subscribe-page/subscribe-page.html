@@ -1,1 +1,94 @@
-<p>subscribe-page works!</p>
+<div class="subscribe-page d-flex justify-content-center align-items-start pt-4">
+  <div class="card subscribe-card shadow-lg">
+
+    <div class="card-header">
+      <h4 class="mb-0">
+        <i class="bi bi-person-plus-fill me-2"></i>Créer un compte
+      </h4>
+    </div>
+
+    <div class="card-body p-4">
+      <form>
+        <!-- Prénom / Nom -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="firstName" class="form-label fw-semibold">Prénom</label>
+            <input type="text" class="form-control" id="firstName" placeholder="Jean" autocomplete="given-name" />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="lastName" class="form-label fw-semibold">Nom</label>
+            <input type="text" class="form-control" id="lastName" placeholder="DUPONT" autocomplete="family-name" />
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="mb-3">
+          <label for="email" class="form-label fw-semibold">Adresse email</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-envelope-fill"></i></span>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              placeholder="exemple&#64;mail.fr"
+              autocomplete="email"
+            />
+          </div>
+        </div>
+
+        <!-- Mot de passe -->
+        <div class="mb-3">
+          <label for="password" class="form-label fw-semibold">Mot de passe</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              placeholder="••••••••"
+              autocomplete="new-password"
+            />
+          </div>
+        </div>
+
+        <!-- Confirmation mot de passe -->
+        <div class="mb-4">
+          <label for="confirmPassword" class="form-label fw-semibold">Confirmer le mot de passe</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
+            <input
+              type="password"
+              class="form-control"
+              id="confirmPassword"
+              placeholder="••••••••"
+              autocomplete="new-password"
+            />
+          </div>
+        </div>
+
+        <!-- CGU -->
+        <div class="form-check mb-4">
+          <input class="form-check-input" type="checkbox" id="cgv" />
+          <label class="form-check-label" for="cgv">
+            J'accepte les
+            <a routerLink="/legal-notice" class="terms-link">mentions légales</a>
+            et les conditions d'utilisation
+          </label>
+        </div>
+
+        <!-- Bouton créer -->
+        <button type="submit" class="btn btn-register w-100">
+          <i class="bi bi-person-check-fill me-2"></i>Créer mon compte
+        </button>
+      </form>
+    </div>
+
+    <div class="card-footer text-center py-3">
+      <small>
+        Déjà un compte ?
+        <a routerLink="/login" class="login-link fw-semibold">Se connecter</a>
+      </small>
+    </div>
+
+  </div>
+</div>
