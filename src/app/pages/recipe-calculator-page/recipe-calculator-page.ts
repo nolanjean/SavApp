@@ -19,6 +19,8 @@ export class RecipeCalculatorPage implements OnInit {
   public choixIngredient: Ingredient | null = null;
   public selectionIngredients: LigneIngredient[] = [];
   public masseTotale = 0;
+  // Recette calculée (résultat retourné par le backend) :
+  public recetteCalculee: Recette | null = null;
   // Nouvelle recette :
   public nouvelleRecetteDTO: RecetteFormDTO = {
     id: null,
@@ -26,7 +28,7 @@ export class RecipeCalculatorPage implements OnInit {
     description: '',
     surgraissage: 0,
     avecSoude: false,
-    concentrationAlcali: 0,
+    concentrationAlcalin: 0,
     ligneIngredients: []
   }// Injection des services par le constructeur :
   constructor(
@@ -98,6 +100,7 @@ export class RecipeCalculatorPage implements OnInit {
     this.recetteService.createRecette(recetteEnvoyee).subscribe({
       next: (recette: Recette) => {
         console.log('Recette reçue du backend :', recette);
+        this.recetteCalculee = recette;
       },
       error: (err) => {
         console.error('Erreur lors de la création de la recette :', err);

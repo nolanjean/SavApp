@@ -6,25 +6,22 @@
                 <div class="card-header bg-success text-white">
                     <h5 class="card-title mb-0">{{ recette.titre }}</h5>
                 </div>
-                <div class="card-body">
-                    <!-- <p class="text-muted small">Créée le : {{
-recette.dateCreation | date:'dd/MM/yyyy' }}</p> -->
+                <div class="card-body d-flex flex-column">
+                    @if (recette.resultats && recette.resultats.length > 0) {
                     <ul class="list-group list-group-flush mb-3">
-                        <li class="list-group-item d-flex justify-contentbetween">{{
-                            recette.resultats[0].caracteristique.nom }}
-                            <strong>{{ recette.resultats[0].score.toFixed(1) }}
-                            </strong>
+                        @for (res of recette.resultats.slice(0, 2); track $index) {
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>{{ res.caracteristique.nom }}</span>
+                            <strong>{{ res.score.toFixed(1) }}</strong>
                         </li>
-                        <li class="list-group-item d-flex justify-contentbetween">{{
-                            recette.resultats[1].caracteristique.nom}}
-                            <strong>{{ recette.resultats[1].score.toFixed(1) }}
-                            </strong>
-                        </li>
+                        }
                     </ul>
-                    <div class="d-flex justify-content-between">
-                        <button class="btn btn-outline-primary btnsm">Détails</button>
-                        <button (click)="supprimerRecette(recette.id)" class="btn
-btn-outline-danger btn-sm">
+                    }
+                    <div class="d-flex justify-content-between mt-auto">
+                        <button class="btn btn-primary btn-sm" (click)="voirDetails(recette)">
+                            Détails
+                        </button>
+                        <button class="btn btn-danger btn-sm" (click)="supprimerRecette(recette.id)">
                             <i class="bi bi-trash"></i>
                         </button>
                     </div>
@@ -36,3 +33,105 @@ btn-outline-danger btn-sm">
         }
     </div>
 </div>
+
+<!-- MODAL DÉTAILS -->
+<div class="modal fade" [class.show]="recetteSelectionnee !== null"
+    [style.display]="recetteSelectionnee !== null ? 'block' : 'none'" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+
+            <div class="modal-header bg-success text-white">
+                <h5 class="modal-title">{{ recetteSelectionnee?.titre }}</h5>
+                <button type="button" class="btn-close btn-close-white" (click)="recetteSelectionnee = null"></button>
+            </div>
+
+            @if (recetteSelectionnee) {
+            <div class="modal-body">
+
+                <!-- Description -->
+                @if (recetteSelectionnee.description) {
+                <p class="text-muted">{{ recetteSelectionnee.description }}</p>
+                }
+
+                <!-- Infos générales -->
+                <h6 class="fw-bold">Informations générales</h6>
+                <ul class="list-group list-group-flush mb-3">
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>Surgraissage</span>
+                        <strong>{{ recetteSelectionnee.surgraissage }} %</strong>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>Alcali</span>
+                        <strong>{{ recetteSelectionnee.avecSoude ? 'Soude (NaOH)' : 'Potasse (KOH)' }}</strong>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>Concentration alcali</span>
+                        <strong>{{ recetteSelectionnee.concentrationAlcalin }} %</strong>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>Quantité d'alcali</span>
+                        <strong>{{ recetteSelectionnee.qteAlcalin | number:'1.2-2' }} g</strong>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>Apport en eau</span>
+                        <strong>{{ recetteSelectionnee.apportEnEau | number:'1.2-2' }} g</strong>
+                    </li>
+                </ul>
+
+                <!-- Ingrédients -->
+                <h6 class="fw-bold">Ingrédients</h6>
+                <table class="table table-sm table-bordered mb-3">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Nom</th>
+                            <th>Quantité (g)</th>
+                            <th>Pourcentage (%)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (ligne of recetteSelectionnee.ligneIngredients; track $index) {
+                        <tr>
+                            <td>{{ ligne.ingredient.nom }}</td>
+                            <td>{{ ligne.quantite | number:'1.2-2' }}</td>
+                            <td>{{ ligne.pourcentage }} %</td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+
+                <!-- Caractéristiques -->
+                @if (recetteSelectionnee.resultats && recetteSelectionnee.resultats.length > 0) {
+                <h6 class="fw-bold">Caractéristiques du savon</h6>
+                <table class="table table-sm table-bordered">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Caractéristique</th>
+                            <th>Score</th>
+                            <th>Mention</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (res of recetteSelectionnee.resultats; track res.caracteristique.id) {
+                        <tr>
+                            <td>{{ res.caracteristique.nom }}</td>
+                            <td>{{ res.score | number:'1.1-1' }}</td>
+                            <td>{{ res.mention?.label ?? '-' }}</td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+                }
+            </div>
+            }
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="recetteSelectionnee = null">Fermer</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Backdrop du modal -->
+@if (recetteSelectionnee !== null) {
+<div class="modal-backdrop fade show" (click)="recetteSelectionnee = null"></div>
+}
