@@ -182,7 +182,11 @@ nouvelleRecetteDTO.concentrationAlcalin = nouvelleRecetteDTO.concentrationAlcali
         <!-- Résultats / Caractéristiques -->
         @if (recetteCalculee.resultats && recetteCalculee.resultats.length > 0) {
         <h6>Caractéristiques du savon</h6>
-        <table class="table table-sm table-bordered">
+
+        <!-- Graphique Radar -->
+        <app-radar-chart [resultats]="recetteCalculee.resultats"></app-radar-chart>
+
+        <table class="table table-sm table-bordered mt-3">
             <thead class="table-light">
                 <tr>
                     <th>Caractéristique</th>

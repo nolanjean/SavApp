@@ -6,9 +6,10 @@ import { LigneIngredient, Recette } from '../../models/recette';
 import { LigneIngredientDTO, RecetteFormDTO } from '../../models/dto';
 import { IngredientService } from '../../services/ingredient.service';
 import { RecetteService } from '../../services/recette.service';
+import { RadarChartComponent } from '../../components/radar-chart/radar-chart';
 @Component({
   selector: 'app-recipe-calculator-page',
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, RadarChartComponent],
   templateUrl: './recipe-calculator-page.html',
   styleUrl: './recipe-calculator-page.css',
 })

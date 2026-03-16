@@ -2,10 +2,11 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Recette } from '../../models/recette';
 import { RecetteService } from '../../services/recette.service';
+import { RadarChartComponent } from '../../components/radar-chart/radar-chart';
 @Component({
   selector: 'app-recettes-manager-page',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RadarChartComponent],
   templateUrl: './recipe-manager-page.html',
   styleUrl: './recipe-manager-page.css'
 })
