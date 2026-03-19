@@ -8,16 +8,28 @@
     </div>
 
     <div class="card-body p-4">
-      <form>
-        <!-- Prénom / Nom -->
-        <div class="row">
-          <div class="col-md-6 mb-3">
-            <label for="firstName" class="form-label fw-semibold">Prénom</label>
-            <input type="text" class="form-control" id="firstName" placeholder="Jean" autocomplete="given-name" />
-          </div>
-          <div class="col-md-6 mb-3">
-            <label for="lastName" class="form-label fw-semibold">Nom</label>
-            <input type="text" class="form-control" id="lastName" placeholder="DUPONT" autocomplete="family-name" />
+
+      @if (errorMessage) {
+      <div class="alert alert-danger p-2 small">
+        {{ errorMessage }}
+      </div>
+      }
+
+      @if (successMessage) {
+      <div class="alert alert-success p-2 small">
+        {{ successMessage }}
+      </div>
+      }
+
+      <form (ngSubmit)="onSubmit()">
+        <!-- Nom d'utilisateur -->
+        <div class="mb-3">
+          <label for="username" class="form-label fw-semibold">Nom d'utilisateur</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
+            <input type="text" class="form-control" id="username" name="username"
+                   placeholder="JeanDupont" autocomplete="username"
+                   [(ngModel)]="form.username" required />
           </div>
         </div>
 
@@ -30,8 +42,11 @@
               type="email"
               class="form-control"
               id="email"
+              name="email"
               placeholder="exemple&#64;mail.fr"
               autocomplete="email"
+              [(ngModel)]="form.email"
+              required
             />
           </div>
         </div>
@@ -45,8 +60,11 @@
               type="password"
               class="form-control"
               id="password"
+              name="password"
               placeholder="••••••••"
               autocomplete="new-password"
+              [(ngModel)]="form.password"
+              required
             />
           </div>
         </div>
@@ -60,15 +78,19 @@
               type="password"
               class="form-control"
               id="confirmPassword"
+              name="confirmPassword"
               placeholder="••••••••"
               autocomplete="new-password"
+              [(ngModel)]="form.confirmPassword"
+              required
             />
           </div>
         </div>
 
         <!-- CGU -->
         <div class="form-check mb-4">
-          <input class="form-check-input" type="checkbox" id="cgv" />
+          <input class="form-check-input" type="checkbox" id="cgv" name="cgv"
+                 [(ngModel)]="cguAccepted" />
           <label class="form-check-label" for="cgv">
             J'accepte les
             <a routerLink="/legal-notice" class="terms-link">mentions légales</a>
@@ -77,8 +99,12 @@
         </div>
 
         <!-- Bouton créer -->
-        <button type="submit" class="btn btn-register w-100">
+        <button type="submit" class="btn btn-register w-100" [disabled]="loading">
+          @if (loading) {
+          <span class="spinner-border spinner-border-sm me-2"></span>Création en cours...
+          } @else {
           <i class="bi bi-person-check-fill me-2"></i>Créer mon compte
+          }
         </button>
       </form>
     </div>
