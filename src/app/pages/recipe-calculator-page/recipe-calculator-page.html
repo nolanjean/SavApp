@@ -126,7 +126,7 @@ nouvelleRecetteDTO.concentrationAlcalin = nouvelleRecetteDTO.concentrationAlcali
 <!-- Bouton soumission de la nouvelle recette -->
 <div class="container mt-4">
     <button class="btn btn-primary" (click)="onSubmit()">
-        Envoyer
+        Calculer
     </button>
 </div>
 
@@ -204,6 +204,20 @@ nouvelleRecetteDTO.concentrationAlcalin = nouvelleRecetteDTO.concentrationAlcali
                 }
             </tbody>
         </table>
+        }
+
+        <!-- Bouton enregistrer (uniquement si connecté) -->
+        @if (authService.isAuthenticated() && !recetteSauvegardee) {
+        <div class="mt-3">
+            <button class="btn btn-success" (click)="sauvegarderRecette()">
+                <i class="bi bi-save"></i> Enregistrer la recette
+            </button>
+        </div>
+        }
+        @if (recetteSauvegardee) {
+        <div class="alert alert-success mt-3 mb-0">
+            <i class="bi bi-check-circle"></i> Recette enregistrée avec succès !
+        </div>
         }
     </div>
 </div>

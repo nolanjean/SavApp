@@ -7,6 +7,7 @@ import { RecipeCalculatorPage } from './pages/recipe-calculator-page/recipe-calc
 import { RecipeManagerPage } from './pages/recipe-manager-page/recipe-manager-page';
 import { UsersManagerPage } from './pages/users-manager-page/users-manager-page';
 import { IngredientsManagerPage } from './pages/ingredients-manager-page/ingredients-manager-page';
+import { RecipesManagerPage } from './pages/recipes-manager-page/recipes-manager-page';
 import { AboutPage } from './pages/about-page/about-page';
 import { LegalNoticePage } from './pages/legal-notice-page/legal-notice-page';
 import { authGuard } from './guards/auth-guard';
@@ -32,6 +33,9 @@ export const routes: Routes = [
     {
         path: 'ingredients-manager', component: IngredientsManagerPage, canActivate:
             [authGuard]
+    },
+    {
+        path: 'recipes-manager', component: RecipesManagerPage, canActivate: [authGuard]
     },
     // A propos :
     { path: "about", component: AboutPage },// Mentions légales :

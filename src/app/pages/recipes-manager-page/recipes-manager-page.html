@@ -1,0 +1,146 @@
+<div class="container mt-4">
+    <div class="card border-warning-subtle shadow mb-4">
+        <div class="card-header bg-warning text-dark fw-bold h5">
+            <i class="bi bi-journal-bookmark-fill"></i> Gestion des Recettes (Admin)
+        </div>
+        <div class="card-body p-0">
+            <table class="table table-striped table-hover mb-0">
+                <thead class="table-warning">
+                    <tr>
+                        <th>ID</th>
+                        <th>Titre</th>
+                        <th>Description</th>
+                        <th>Surgraissage</th>
+                        <th>Alcali</th>
+                        <th class="text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (recette of recettes; track recette.id) {
+                    <tr>
+                        <td>{{ recette.id }}</td>
+                        <td><strong>{{ recette.titre }}</strong></td>
+                        <td>{{ recette.description }}</td>
+                        <td>{{ recette.surgraissage }} %</td>
+                        <td>{{ recette.avecSoude ? 'Soude' : 'Potasse' }}</td>
+                        <td class="text-center">
+                            <button class="btn btn-sm btn-primary me-2" (click)="voirDetails(recette)">
+                                <i class="bi bi-eye-fill"></i>
+                            </button>
+                            <button class="btn btn-sm btn-danger" (click)="supprimerRecette(recette.id)">
+                                <i class="bi bi-trash-fill"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    }
+                    @empty {
+                    <tr>
+                        <td colspan="6" class="text-center text-muted py-4">
+                            <i class="bi bi-exclamation-triangle"></i>
+                            Aucune recette trouvée. Vérifiez que votre API Backend est bien lancée sur le port 8080.
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL DÉTAILS -->
+<div class="modal fade" [class.show]="recetteSelectionnee !== null"
+    [style.display]="recetteSelectionnee !== null ? 'block' : 'none'" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+
+            <div class="modal-header bg-warning text-dark">
+                <h5 class="modal-title">{{ recetteSelectionnee?.titre }}</h5>
+                <button type="button" class="btn-close" (click)="recetteSelectionnee = null"></button>
+            </div>
+
+            @if (recetteSelectionnee) {
+            <div class="modal-body">
+
+                @if (recetteSelectionnee.description) {
+                <p class="text-muted">{{ recetteSelectionnee.description }}</p>
+                }
+
+                <h6 class="fw-bold">Informations générales</h6>
+                <ul class="list-group list-group-flush mb-3">
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>Surgraissage</span>
+                        <strong>{{ recetteSelectionnee.surgraissage }} %</strong>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>Alcali</span>
+                        <strong>{{ recetteSelectionnee.avecSoude ? 'Soude (NaOH)' : 'Potasse (KOH)' }}</strong>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>Concentration alcali</span>
+                        <strong>{{ recetteSelectionnee.concentrationAlcalin }} %</strong>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>Quantité d'alcali</span>
+                        <strong>{{ recetteSelectionnee.qteAlcalin | number:'1.2-2' }} g</strong>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>Apport en eau</span>
+                        <strong>{{ recetteSelectionnee.apportEnEau | number:'1.2-2' }} g</strong>
+                    </li>
+                </ul>
+
+                <h6 class="fw-bold">Ingrédients</h6>
+                <table class="table table-sm table-bordered mb-3">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Nom</th>
+                            <th>Quantité (g)</th>
+                            <th>Pourcentage (%)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (ligne of recetteSelectionnee.ligneIngredients; track $index) {
+                        <tr>
+                            <td>{{ ligne.ingredient.nom }}</td>
+                            <td>{{ ligne.quantite | number:'1.2-2' }}</td>
+                            <td>{{ ligne.pourcentage }} %</td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+
+                @if (recetteSelectionnee.resultats && recetteSelectionnee.resultats.length > 0) {
+                <h6 class="fw-bold">Caractéristiques du savon</h6>
+                <app-radar-chart [resultats]="recetteSelectionnee.resultats"></app-radar-chart>
+                <table class="table table-sm table-bordered mt-3">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Caractéristique</th>
+                            <th>Score</th>
+                            <th>Mention</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (res of recetteSelectionnee.resultats; track res.caracteristique.id) {
+                        <tr>
+                            <td>{{ res.caracteristique.nom }}</td>
+                            <td>{{ res.score | number:'1.1-1' }}</td>
+                            <td>{{ res.mention?.label ?? '-' }}</td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+                }
+            </div>
+            }
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="recetteSelectionnee = null">Fermer</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (recetteSelectionnee !== null) {
+<div class="modal-backdrop fade show" (click)="recetteSelectionnee = null"></div>
+}

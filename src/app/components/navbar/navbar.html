@@ -42,6 +42,17 @@ supprimer...)">
           </a>
         </li>
         }}
+        <!-- Accès gestion des recettes pour l'administrateur -->
+        @if (authService.isAuthenticated()) {
+        @if (authService.hasRole('ROLE_ADMIN')){
+        <li class="nav-item admin-only">
+          <a class="nav-link" routerLink="recipes-manager" routerLinkActive="active"
+            title="Gérer toutes les recettes des utilisateurs">
+            <i class="bi bi-journal-bookmark-fill"> </i>
+            Recettes
+          </a>
+        </li>
+        }}
         <!-- Accès gestion des ingrédients pour l'administrateur -->
         @if (authService.isAuthenticated()) {
         @if (authService.hasRole('ROLE_ADMIN')){
